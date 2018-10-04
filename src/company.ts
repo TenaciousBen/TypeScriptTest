@@ -62,10 +62,8 @@ export class Company implements EmployeeLoader, EmployeeFinder, DepartmentFinder
 		if (namesSeen.has(employees.name)) return false;
 		namesSeen.add(employees.name);
 		if (employees.subordinates.length === 0) return true;
-		for (let i = 0; i < employees.subordinates.length; i++) {
-			if (!this.isLoadable(employees.subordinates[i], namesSeen)) return false;
-		}
-		return true;
+		let duplicate = employees.subordinates.find(e => !this.isLoadable(e, namesSeen));
+		return !duplicate;
 	}
 
 	load(employees: Employee): void {
