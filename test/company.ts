@@ -3,29 +3,32 @@ import { Company, Employee } from "../src/company";
 const employees = require("../data/validStructure.json");
 const invalidEmployees = require("../data/invalidStructure.json");
 
+const getEmployees = () => JSON.parse(JSON.stringify(employees));
+const getInvalidEmployees = () => JSON.parse(JSON.stringify(invalidEmployees)); 
+
 describe("Company", () => {
 	it("Can determine whether structures are valid", () => {
 		let company = new Company();
-		let isValidStructureLoadable = company.isLoadable(employees);
+		let isValidStructureLoadable = company.isLoadable(getEmployees());
 		expect(isValidStructureLoadable).to.not.be.null;
 		expect(isValidStructureLoadable).to.be.true;
 	});
 	it("Can determine whether invalid employees can be loaded", () => {
 		let company = new Company();
-		let isInvalidStructureLoadable = company.isLoadable(invalidEmployees);
+		let isInvalidStructureLoadable = company.isLoadable(getInvalidEmployees());
 		expect(isInvalidStructureLoadable).to.not.be.null;
 		expect(isInvalidStructureLoadable).to.be.false;
 	});
 	it("Can load employees", () => {
 		let company = new Company();
-		company.load(employees);
+		company.load(getEmployees());
 		expect(company.employees).to.not.be.null;
 		expect(company.employees.subordinates).to.not.be.null;
 		expect(company.employees.subordinates.length).to.equal(3);
 	});
 	it("Can find employees by name", () => {
 		let company = new Company();
-		company.load(employees);
+		company.load(getEmployees());
 		let nameMatch = company.findEmployee(e => e.name === "Billy Price");
 		let salaryMatch = company.findEmployee(e => e.salary === 45000);
 		let noMatch = company.findEmployee(e => e.department === "Department of Nonsense");
@@ -37,21 +40,21 @@ describe("Company", () => {
 	});
 	it("Can find the highest paid employee", () => {
 		let company = new Company();
-		company.load(employees);
+		company.load(getEmployees());
 		let highestPaid = company.findHighestPaidEmployee();
 		expect(highestPaid).to.not.be.null;
 		expect(highestPaid.salary).to.equal(100000);
 	});
 	it("Can find the lowest paid employee", () => {
 		let company = new Company();
-		company.load(employees);
+		company.load(getEmployees());
 		let lowestPaid = company.findLowestPaidEmployee();
 		expect(lowestPaid).to.not.be.null;
 		expect(lowestPaid.salary).to.equal(15000);
 	});
 	it("Can get the departments", () => {
 		let company = new Company();
-		company.load(employees);
+		company.load(getEmployees());
 		let departments = company.getDepartments();
 		expect(departments).to.not.be.null;
 		expect(departments.length).to.equal(4);
@@ -61,7 +64,7 @@ describe("Company", () => {
 	});
 	it("Can get the department headcounts", () => {
 		let company = new Company();
-		company.load(employees);
+		company.load(getEmployees());
 		let executives = company.getDepartmentHeadcount("Executive");
 		let marketing = company.getDepartmentHeadcount("Marketing");
 		let sales = company.getDepartmentHeadcount("Sales");
@@ -73,19 +76,19 @@ describe("Company", () => {
 	});
 	it("Can get the highest paid department", () => {
 		let company = new Company();
-		company.load(employees);
+		company.load(getEmployees());
 		let highestPaid = company.findHighestPaidDepartment();
 		expect(highestPaid).to.equal("IT");
 	});
 	it("Can get the lowest paid department", () => {
 		let company = new Company();
-		company.load(employees);
+		company.load(getEmployees());
 		let lowestPaid = company.findLowestPaidDepartment();
 		expect(lowestPaid).to.equal("Executive");
 	});
 	it("Can add an employee as a subordinate", () => {
 		let company = new Company();
-		company.load(employees);
+		company.load(getEmployees());
 		const apprentice: Employee = {
 			name: "Clive Mitchel",
 			title: "Apprentice Software Developer",
@@ -105,7 +108,7 @@ describe("Company", () => {
 	});
 	it("Can add an employee as a new root", () => {
 		let company = new Company();
-		company.load(employees);
+		company.load(getEmployees());
 		const chairman: Employee = {
 			name: "James Runner",
 			title: "Chairman",
@@ -131,7 +134,7 @@ describe("Company", () => {
 	});
 	it("Can remove an employee", () => {
 		let company = new Company();
-		company.load(employees);
+		company.load(getEmployees());
 		company.removeEmployee("Josh Anderson");
 		let removed = company.findEmployee(e => e.name === "Josh Anderson");
 		expect(removed).to.be.null;
@@ -142,7 +145,7 @@ describe("Company", () => {
 	});
 	it("Cannot remove root employee", () => {
 		let company = new Company();
-		company.load(employees);
+		company.load(getEmployees());
 		let wasError = false;
 		try {
 			company.removeEmployee("Mike Love");
@@ -153,7 +156,7 @@ describe("Company", () => {
 	});
 	it("Can replace an employee", () => {
 		let company = new Company();
-		company.load(employees);
+		company.load(getEmployees());
 		const newHeadOfIt: Employee = {
 			name: "Helen Vargas",
 			title: "Head of IT",
