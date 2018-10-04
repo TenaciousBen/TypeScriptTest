@@ -57,8 +57,15 @@ const defaultEmployee: Employee = {
 export class Company implements EmployeeLoader, EmployeeFinder, DepartmentFinder, EmployeeAdministrator {
 	employees: Employee = defaultEmployee;
 
-	isLoadable(employees: Employee): boolean {
-		return false;
+	isLoadable(employees: Employee, namesSeen?: Set<string>): boolean {
+		if (!namesSeen) namesSeen = new Set<string>();
+		if (namesSeen.has(employees.name)) return false;
+		namesSeen.add(employees.name);
+		if (employees.subordinates.length === 0) return true;
+		for (let i = 0; i < employees.subordinates.length; i++) {
+			if (!this.isLoadable(employees.subordinates[i], namesSeen)) return false;
+		}
+		return true;
 	}
 
 	load(employees: Employee): void {

@@ -1,0 +1,139 @@
+{
+	"name": "Mike Love",
+	"title": "CEO",
+	"department": "Executive",
+	"salary": 100000,
+	"subordinates": [
+		{
+			"name": "Sarah Jum",
+			"title": "Head of Marketing",
+			"department": "Marketing",
+			"salary": 60000,
+			"subordinates": [
+				{
+					"name": "Billy Price",
+					"title": "Marketing Executive",
+					"department": "marketing",
+					"salary": 45000,
+					"subordinates": []
+				},
+				{
+					"name": "Mike Love",
+					"title": "Marketing Trainee",
+					"department": "marketing",
+					"salary": 15000,
+					"subordinates": []
+				},
+				{
+					"name": "Clive Amberson",
+					"title": "Marketing Executive",
+					"department": "marketing",
+					"salary": 47000,
+					"subordinates": []
+				}
+			]
+		},
+		{
+			"name": "Bob Frisket",
+			"title": "Head of Sales",
+			"department": "sales",
+			"salary": 700000,
+			"subordinates": [
+				{
+					"name": "Tarq Fasheeq",
+					"title": "Sales Manager",
+					"department": "sales",
+					"salary": 55000,
+					"subordinates": [
+						{
+							"name": "Mike Masters",
+							"title": "Sales Executive",
+							"department": "sales",
+							"salary": 45000,
+							"subordinates": []
+						},
+						{
+							"name": "Julia Thumbold",
+							"title": "Sales Trainee",
+							"department": "sales",
+							"salary": 15000,
+							"subordinates": []
+						},
+						{
+							"name": "Dick Partridge",
+							"title": "Sales Executive",
+							"department": "sales",
+							"salary": 30000,
+							"subordinates": []
+						},
+						{
+							"name": "Yvette Kunsfeld",
+							"title": "Senior Sales Executive",
+							"department": "sales",
+							"salary": 50000,
+							"subordinates": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Josh Anderson",
+			"title": "Head of IT",
+			"department": "IT",
+			"salary": 75000,
+			"subordinates": [
+				{
+					"name": "Amanda Holsted",
+					"title": "First Line Support",
+					"department": "IT",
+					"salary": 18000,
+					"subordinates": []
+				},
+				{
+					"name": "Jake Nicols",
+					"title": "Quality Assurance",
+					"department": "IT",
+					"salary": 25000,
+					"subordinates": []
+				},
+				{
+					"name": "Anne Barret",
+					"title": "Product Owner",
+					"department": "IT",
+					"salary": 47000,
+					"subordinates": []
+				},
+				{
+					"name": "Margrette Pickleton",
+					"title": "Lead Developer",
+					"department": "IT",
+					"salary": 75000,
+					"subordinates": [
+						{
+							"name": "Martin Shawshank",
+							"title": "Senior Developer",
+							"department": "IT",
+							"salary": 65000,
+							"subordinates": []
+						},
+						{
+							"name": "Bob Price",
+							"title": "Developer",
+							"department": "IT",
+							"salary": 50000,
+							"subordinates": []
+						},
+						{
+							"name": "Susan Cliffbridge",
+							"title": "Junior Developer",
+							"department": "IT",
+							"salary": 35000,
+							"subordinates": []
+						}
+					]
+				}
+			]
+		}
+	]
+}
