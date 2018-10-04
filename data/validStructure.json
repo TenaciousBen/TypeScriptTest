@@ -13,21 +13,21 @@
 				{
 					"name": "Billy Price",
 					"title": "Marketing Executive",
-					"department": "marketing",
+					"department": "Marketing",
 					"salary": 45000,
 					"subordinates": []
 				},
 				{
 					"name": "Sally Jumnoodoo",
 					"title": "Marketing Trainee",
-					"department": "marketing",
+					"department": "Marketing",
 					"salary": 15000,
 					"subordinates": []
 				},
 				{
 					"name": "Clive Amberson",
 					"title": "Marketing Executive",
-					"department": "marketing",
+					"department": "Marketing",
 					"salary": 47000,
 					"subordinates": []
 				}
@@ -36,40 +36,40 @@
 		{
 			"name": "Bob Frisket",
 			"title": "Head of Sales",
-			"department": "sales",
+			"department": "Sales",
 			"salary": 700000,
 			"subordinates": [
 				{
 					"name": "Tarq Fasheeq",
 					"title": "Sales Manager",
-					"department": "sales",
+					"department": "Sales",
 					"salary": 55000,
 					"subordinates": [
 						{
 							"name": "Mike Masters",
 							"title": "Sales Executive",
-							"department": "sales",
+							"department": "Sales",
 							"salary": 45000,
 							"subordinates": []
 						},
 						{
 							"name": "Julia Thumbold",
 							"title": "Sales Trainee",
-							"department": "sales",
+							"department": "Sales",
 							"salary": 15000,
 							"subordinates": []
 						},
 						{
 							"name": "Dick Partridge",
 							"title": "Sales Executive",
-							"department": "sales",
+							"department": "Sales",
 							"salary": 30000,
 							"subordinates": []
 						},
 						{
 							"name": "Yvette Kunsfeld",
 							"title": "Senior Sales Executive",
-							"department": "sales",
+							"department": "Sales",
 							"salary": 50000,
 							"subordinates": []
 						}

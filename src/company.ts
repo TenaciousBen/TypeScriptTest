@@ -40,9 +40,12 @@ export interface EmployeeAdministrator {
 	// adds an employee as a subordinate of the matching manager if one is supplied, else
 	// adds all employees as subordinates of the supplied employee
 	addEmployee(managerName: string | null, subordinate: Employee): void;
-	// removes the employee with the matching name
+	// removes the employee with the matching name, shifting all their subordinates up to their manager
+	// if the highest level employee (the employee who is nobody's subordinate) is removed, then an error
+	// should be thrown
 	removeEmployee(employee: string): void;
-	// replaces the employee with the matching name with the replacement employee 
+	// replaces the employee with the matching name with the replacement employee, retaining
+	// all subordinates from the replaced employee
 	replaceEmployee(original: string, replacement: Employee): void;
 }
 
@@ -98,7 +101,7 @@ export class Company implements EmployeeLoader, EmployeeFinder, DepartmentFinder
 		return "";
 	}
 
-	addEmployee(managerName: string, subordinate: Employee): void {
+	addEmployee(managerName: string | null, subordinate: Employee): void {
 
 	}
 
