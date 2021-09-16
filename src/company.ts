@@ -28,55 +28,55 @@ export const isValidStructure = (employees: Employee, namesSeen?: Set<string>): 
 }
 
 // finds the first employee that matches the predicate
-export const findEmployee = (predicate: EmployeePredicate): Employee | null => {
+export const findEmployee = (employees: Employee, predicate: EmployeePredicate): Employee | null => {
 	return null;
 }
 
 // finds the highest paid employee in the loaded employees
-export const findHighestPaidEmployee = (): Employee => {
+export const findHighestPaidEmployee = (employees: Employee): Employee => {
 	return defaultEmployee;
 }
 
 // finds the lowest paid employee in the loaded employees
-export const findLowestPaidEmployee = (): Employee => {
+export const findLowestPaidEmployee = (employees: Employee): Employee => {
 	return defaultEmployee;
 }
 
 // gets an array of all the departments
-export const getDepartments = (): string[] => {
+export const getDepartments = (employees: Employee): string[] => {
 	return [];
 }
 
 // gets the number of employees in the specified department
-export const getDepartmentHeadcount = (department: string): number => {
+export const getDepartmentHeadcount = (employees: Employee, department: string): number => {
 	return -1;
 }
 
 // finds the department with the highest total pay
-export const findHighestPaidDepartment = (): string => {
+export const findHighestPaidDepartment = (employees: Employee): string => {
 	return "";
 }
 
 // finds the department with the lowest total pay
-export const findLowestPaidDepartment = (): string => {
+export const findLowestPaidDepartment = (employees: Employee): string => {
 	return "";
 }
 
 // adds an employee as a subordinate of the matching manager if one is supplied, else
 // adds all employees as subordinates of the supplied employee
-export const addEmployee = (managerName: string | null, subordinate: Employee): void => {
+export const addEmployee = (employees: Employee, managerName: string | null, subordinate: Employee): void => {
 
 }
 
 // removes the employee with the matching name, shifting all their subordinates up to their manager
 // if the highest level employee (the employee who is nobody's subordinate) is removed, then an error
 // should be thrown
-export const removeEmployee = (employee: string): void => {
+export const removeEmployee = (employees: Employee, employee: string): void => {
 
 }
 
 // replaces the employee with the matching name with the replacement employee, retaining
 // all subordinates from the replaced employee
-export const replaceEmployee = (original: string, replacement: Employee): void => {
+export const replaceEmployee = (employees: Employee, original: string, replacement: Employee): void => {
 
 }
