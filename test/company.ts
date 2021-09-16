@@ -30,11 +30,6 @@ describe("Company", () => {
 		expect(isInvalidStructureLoadable).to.not.be.null;
 		expect(isInvalidStructureLoadable).to.be.false;
 	});
-	it("Can load employees", () => {
-		expect(employees).to.not.be.null;
-		expect(employees.subordinates).to.not.be.null;
-		expect(employees.subordinates.length).to.equal(3);
-	});
 	it("Can find employees by name", () => {
 		let nameMatch = findEmployee(getEmployees(), e => e.name === "Billy Price");
 		let salaryMatch = findEmployee(getEmployees(), e => e.salary === 45000);
