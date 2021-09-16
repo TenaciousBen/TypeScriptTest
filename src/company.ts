@@ -6,48 +6,8 @@ export interface Employee {
 	subordinates: Employee[];
 }
 
-export interface EmployeeLoader {
-	// returns true if all employees are uniquely named
-	isLoadable(employees: Employee): boolean;
-	// loads a set of employees into the implementor
-	load(employees: Employee): void;
-}
-
 // returns true if the employee is a match
 export type EmployeePredicate = (employee: Employee) => boolean;
-
-export interface EmployeeFinder {
-	// finds the first employee that matches the predicate
-	findEmployee(predicate: EmployeePredicate): Employee | null;
-	// finds the highest paid employee in the loaded employees
-	findHighestPaidEmployee(): Employee;
-	// finds the lowest paid employee in the loaded employees
-	findLowestPaidEmployee(): Employee;
-}
-
-export interface DepartmentFinder {
-	// gets an array of all the departments
-	getDepartments(): string[];
-	// gets the number of employees in the specified department
-	getDepartmentHeadcount(department: string): number;
-	// finds the department with the highest total pay
-	findHighestPaidDepartment(): string;
-	// finds the department with the lowest total pay
-	findLowestPaidDepartment(): string;
-}
-
-export interface EmployeeAdministrator {
-	// adds an employee as a subordinate of the matching manager if one is supplied, else
-	// adds all employees as subordinates of the supplied employee
-	addEmployee(managerName: string | null, subordinate: Employee): void;
-	// removes the employee with the matching name, shifting all their subordinates up to their manager
-	// if the highest level employee (the employee who is nobody's subordinate) is removed, then an error
-	// should be thrown
-	removeEmployee(employee: string): void;
-	// replaces the employee with the matching name with the replacement employee, retaining
-	// all subordinates from the replaced employee
-	replaceEmployee(original: string, replacement: Employee): void;
-}
 
 const defaultEmployee: Employee = {
 	name: "",
@@ -57,59 +17,66 @@ const defaultEmployee: Employee = {
 	subordinates: []
 };
 
-export class Company implements EmployeeLoader, EmployeeFinder, DepartmentFinder, EmployeeAdministrator {
-	employees: Employee = defaultEmployee;
+// returns true if all employees are uniquely named
+export const isValidStructure = (employees: Employee, namesSeen?: Set<string>): boolean => {
+	if (!namesSeen) namesSeen = new Set<string>();
+	if (namesSeen.has(employees.name)) return false;
+	namesSeen.add(employees.name);
+	if (employees.subordinates.length === 0) return true;
+	let duplicate = employees.subordinates.find(e => !isValidStructure(e, namesSeen));
+	return !duplicate;
+}
 
-	isLoadable(employees: Employee, namesSeen?: Set<string>): boolean {
-		if (!namesSeen) namesSeen = new Set<string>();
-		if (namesSeen.has(employees.name)) return false;
-		namesSeen.add(employees.name);
-		if (employees.subordinates.length === 0) return true;
-		let duplicate = employees.subordinates.find(e => !this.isLoadable(e, namesSeen));
-		return !duplicate;
-	}
+// finds the first employee that matches the predicate
+export const findEmployee = (predicate: EmployeePredicate): Employee | null => {
+	return null;
+}
 
-	load(employees: Employee): void {
-		this.employees = employees;
-	}
+// finds the highest paid employee in the loaded employees
+export const findHighestPaidEmployee = (): Employee => {
+	return defaultEmployee;
+}
 
-	findEmployee(predicate: EmployeePredicate): Employee | null {
-		return null;
-	}
+// finds the lowest paid employee in the loaded employees
+export const findLowestPaidEmployee = (): Employee => {
+	return defaultEmployee;
+}
 
-	findHighestPaidEmployee(): Employee {
-		return defaultEmployee;
-	}
+// gets an array of all the departments
+export const getDepartments = (): string[] => {
+	return [];
+}
 
-	findLowestPaidEmployee(): Employee {
-		return defaultEmployee;
-	}
+// gets the number of employees in the specified department
+export const getDepartmentHeadcount = (department: string): number => {
+	return -1;
+}
 
-	getDepartments(): string[] {
-		return [];
-	}
+// finds the department with the highest total pay
+export const findHighestPaidDepartment = (): string => {
+	return "";
+}
 
-	getDepartmentHeadcount(department: string): number {
-		return -1;
-	}
+// finds the department with the lowest total pay
+export const findLowestPaidDepartment = (): string => {
+	return "";
+}
 
-	findHighestPaidDepartment(): string {
-		return "";
-	}
+// adds an employee as a subordinate of the matching manager if one is supplied, else
+// adds all employees as subordinates of the supplied employee
+export const addEmployee = (managerName: string | null, subordinate: Employee): void => {
 
-	findLowestPaidDepartment(): string {
-		return "";
-	}
+}
 
-	addEmployee(managerName: string | null, subordinate: Employee): void {
+// removes the employee with the matching name, shifting all their subordinates up to their manager
+// if the highest level employee (the employee who is nobody's subordinate) is removed, then an error
+// should be thrown
+export const removeEmployee = (employee: string): void => {
 
-	}
+}
 
-	removeEmployee(employee: string): void {
+// replaces the employee with the matching name with the replacement employee, retaining
+// all subordinates from the replaced employee
+export const replaceEmployee = (original: string, replacement: Employee): void => {
 
-	}
-
-	replaceEmployee(original: string, replacement: Employee): void {
-
-	}
 }
