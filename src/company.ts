@@ -64,19 +64,20 @@ export const findLowestPaidDepartment = (employees: Employee): string => {
 
 // adds an employee as a subordinate of the matching manager if one is supplied, else
 // adds all employees as subordinates of the supplied employee
-export const addEmployee = (employees: Employee, managerName: string | null, subordinate: Employee): void => {
-
+export const addEmployee = (employees: Employee, managerName: string | null, subordinate: Employee): Employee => {
+	return employees;
 }
 
 // removes the employee with the matching name, shifting all their subordinates up to their manager
 // if the highest level employee (the employee who is nobody's subordinate) is removed, then an error
 // should be thrown
-export const removeEmployee = (employees: Employee, employee: string): void => {
-
+export const removeEmployee = (employees: Employee, employee: string): Employee => {
+	return employees;
 }
 
 // replaces the employee with the matching name with the replacement employee, retaining
 // all subordinates from the replaced employee
-export const replaceEmployee = (employees: Employee, original: string, replacement: Employee): void => {
+export const replaceEmployee = (employees: Employee, original: string, replacement: Employee): Employee => {
+	return employees;
 
 }

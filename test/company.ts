@@ -102,8 +102,8 @@ describe("Company", () => {
 			salary: 150000,
 			subordinates: []
 		};
-		addEmployee(getEmployees(), null, chairman);
-		let added = findEmployee(getEmployees(), e => e.name === "James Runner");
+		const modified = addEmployee(getEmployees(), null, chairman);
+		let added = findEmployee(modified, e => e.name === "James Runner");
 		expect(added).to.not.be.null;
 		expect(added!.name).to.equal(chairman.name);
 		expect(added!.title).to.equal(chairman.title);
@@ -119,10 +119,10 @@ describe("Company", () => {
 		expect(added!.subordinates[0].subordinates.length).to.equal(3);
 	});
 	it("Can remove an employee", () => {
-		removeEmployee(getEmployees(), "Josh Anderson");
-		let removed = findEmployee(getEmployees(), e => e.name === "Josh Anderson");
+		const modified = removeEmployee(getEmployees(), "Josh Anderson");
+		let removed = findEmployee(modified, e => e.name === "Josh Anderson");
 		expect(removed).to.be.null;
-		let newManager = findEmployee(getEmployees(), e => e.name === "Mike Love");
+		let newManager = findEmployee(modified, e => e.name === "Mike Love");
 		expect(newManager).to.not.be.null;
 		expect(newManager!.subordinates).not.not.be.null;
 		expect(newManager!.subordinates.length).to.equal(6);
@@ -144,10 +144,10 @@ describe("Company", () => {
 			salary: 75000,
 			subordinates: []
 		};
-		replaceEmployee(getEmployees(), "Josh Anderson", newHeadOfIt);
-		let removed = findEmployee(getEmployees(), e => e.name === "Josh Anderson");
+		const modified = replaceEmployee(getEmployees(), "Josh Anderson", newHeadOfIt);
+		let removed = findEmployee(modified, e => e.name === "Josh Anderson");
 		expect(removed).to.be.null;
-		let added = findEmployee(getEmployees(), e => e.name === "Helen Vargas");
+		let added = findEmployee(modified, e => e.name === "Helen Vargas");
 		expect(added).to.not.be.null;
 		expect(added!.name).to.equal(newHeadOfIt.name);
 		expect(added!.title).to.equal(newHeadOfIt.title);
