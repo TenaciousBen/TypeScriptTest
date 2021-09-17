@@ -64,6 +64,7 @@ export const findLowestPaidDepartment = (employees: Employee): string => {
 
 // adds an employee as a subordinate of the matching manager if one is supplied, else
 // adds all employees as subordinates of the supplied employee
+// should not mutate passed-in employees
 export const addEmployee = (employees: Employee, managerName: string | null, subordinate: Employee): Employee => {
 	return employees;
 }
@@ -71,12 +72,14 @@ export const addEmployee = (employees: Employee, managerName: string | null, sub
 // removes the employee with the matching name, shifting all their subordinates up to their manager
 // if the highest level employee (the employee who is nobody's subordinate) is removed, then an error
 // should be thrown
+// should not mutate passed-in employees
 export const removeEmployee = (employees: Employee, employee: string): Employee => {
 	return employees;
 }
 
 // replaces the employee with the matching name with the replacement employee, retaining
 // all subordinates from the replaced employee
+// should not mutate passed-in employees
 export const replaceEmployee = (employees: Employee, original: string, replacement: Employee): Employee => {
 	return employees;
 

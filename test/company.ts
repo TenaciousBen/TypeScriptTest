@@ -84,8 +84,10 @@ describe("Company", () => {
 			salary: 10000,
 			subordinates: []
 		};
-		addEmployee(getEmployees(), "Martin Shawshank", apprentice);
-		let manager = findEmployee(getEmployees(), e => e.name === "Martin Shawshank");
+		const employees = getEmployees();
+		const modified = addEmployee(employees, "Martin Shawshank", apprentice);
+		expect(JSON.stringify(employees)).not.to.equal(JSON.stringify(modified), "employees tree mutated");
+		let manager = findEmployee(modified, e => e.name === "Martin Shawshank");
 		expect(manager!.subordinates.length).to.equal(1);
 		expect(manager!.subordinates[0].name).to.equal(apprentice.name);
 		expect(manager!.subordinates[0].title).to.equal(apprentice.title);
@@ -102,7 +104,9 @@ describe("Company", () => {
 			salary: 150000,
 			subordinates: []
 		};
-		const modified = addEmployee(getEmployees(), null, chairman);
+		const employees = getEmployees();
+		const modified = addEmployee(employees, null, chairman);
+		expect(JSON.stringify(employees)).not.to.equal(JSON.stringify(modified), "employees tree mutated");
 		let added = findEmployee(modified, e => e.name === "James Runner");
 		expect(added).to.not.be.null;
 		expect(added!.name).to.equal(chairman.name);
@@ -119,7 +123,9 @@ describe("Company", () => {
 		expect(added!.subordinates[0].subordinates.length).to.equal(3);
 	});
 	it("Can remove an employee", () => {
-		const modified = removeEmployee(getEmployees(), "Josh Anderson");
+		const employees = getEmployees();
+		const modified = removeEmployee(employees, "Josh Anderson");
+		expect(JSON.stringify(employees)).not.to.equal(JSON.stringify(modified), "employees tree mutated");
 		let removed = findEmployee(modified, e => e.name === "Josh Anderson");
 		expect(removed).to.be.null;
 		let newManager = findEmployee(modified, e => e.name === "Mike Love");
@@ -144,7 +150,9 @@ describe("Company", () => {
 			salary: 75000,
 			subordinates: []
 		};
-		const modified = replaceEmployee(getEmployees(), "Josh Anderson", newHeadOfIt);
+		const employees = getEmployees();
+		const modified = replaceEmployee(employees, "Josh Anderson", newHeadOfIt);
+		expect(JSON.stringify(employees)).not.to.equal(JSON.stringify(modified), "employees tree mutated");
 		let removed = findEmployee(modified, e => e.name === "Josh Anderson");
 		expect(removed).to.be.null;
 		let added = findEmployee(modified, e => e.name === "Helen Vargas");
